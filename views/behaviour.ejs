@@ -1,0 +1,9 @@
+<%- include("./partials/header.ejs") %>
+<%- include("./partials/email.ejs") %>
+<h1>Choose a form</h1>
+<form>
+  <p>Morning <input type='radio' name='type' value='morning'/> <strong><%= morningM %></strong></p> 
+  <p>Evening <input type='radio' name='type' value='evening'/> <strong><%= eveningM %></strong></p> 
+    <input type='submit' value='Go'/>
+</form>
+<%- include("./partials/footer.ejs") %>

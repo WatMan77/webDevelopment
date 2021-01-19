@@ -1,0 +1,31 @@
+<%- include("./partials/header.ejs") %>
+<%- include("./partials/email.ejs") %>
+<h1>How was your day?</h1>
+<form method='POST' action='/behavior/reporting' >
+  Date(yyyy-mm-dd): <input type='text' name='date' value='<%= date %>' />
+   Sports: <input type='number' name='sports' value=<%= sports %>/>
+   Studying: <input type='number' name='study' value='<%= study %>'/>
+    Eating: <input type='range' name='eating' min=1 max=5 value=<%= eating%>/>
+    Mood: <input type='range' name='mood' min=1 max=5 value=<%= mood%>/>
+    <input type='submit' value='submit'/>
+</form>
+
+<% if(errors) { %>
+    <ul>
+        <% Object.keys(errors).forEach((attribute) => { %>
+            <% Object.values(errors[attribute]).forEach((err) => { %>
+                <li><%= err %></li>
+            <% }); %>
+        <% }); %>
+    </ul>
+<% };%> 
+<%- include("./partials/footer.ejs") %>
+<% /*CREATE TABLE evening (
+id SERIAL PRIMARY KEY,
+date DATE NOT NULL,
+sports DECIMAL(3,1) NOT NULL,
+study DECIMAL(3,1) NOT NULL,
+eating INTEGER NOT NULL,
+mood INTEGER NOT NULL,
+user_id INTEGER REFERENCES users(id)
+); */ %>

@@ -1,0 +1,21 @@
+<%- include("./partials/header.ejs") %>
+<%- include("./partials/email.ejs") %>
+<h1>How was your night?</h1>
+<form method='POST' action='/behavior/reporting'>
+    Date (yyyy-mm-dd): <input type='text' name='date' value='<%= date %>'/>
+    Duration: <input type='number' name='duration' value='<%= duration %>'/>
+    Quality: <input type='range' name='quality' min=1 max=5 value='<%= quality %>' />
+    Mood: <input type='range' name='mood' min=1 max=5 value='<%= mood %>'/>
+    <input type='submit' value='Submit!'/>
+</form>
+
+<% if(errors) { %>
+    <ul>
+        <% Object.keys(errors).forEach((attribute) => { %>
+            <% Object.values(errors[attribute]).forEach((err) => { %>
+                <li><%= err %></li>
+            <% }); %>
+        <% }); %>
+    </ul>
+<% };%>
+<%- include("./partials/footer.ejs") %>

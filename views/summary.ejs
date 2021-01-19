@@ -1,0 +1,81 @@
+<%- include("./partials/header.ejs") %>
+<%- include("./partials/email.ejs") %>
+<h1>Summary for the week</h1>
+
+Insert week and/or month you want to inspect. Current week and month are shown by default
+<form method='POST' action='/behavior/summary'>
+    Week <input type='week' name='week'/>
+    Month <input type='month' name='month'/>
+    <input type='submit' value='Change date'/>
+</form>
+
+    <h2>Weekly summary</h2>
+    <% if(morningW.passed) { %>
+    <h3>Mornings</h3>
+    <p>Duration: <%= morningW.wduration %></p>
+    <p>Quality: <%= morningW.wquality %></p>
+    <p>Mood: <%= morningW.wmood %></p>
+    <% } else { %>
+        <p>No data for morning found</p>
+    <% };%>
+
+    <% if(eveningW.passed) { %>
+    <h3>Evenings</h3>
+    <p>Sports: <%= eveningW.wsports %></p>
+    <p>Study: <%= eveningW.wstudy %></p>
+    <p>Eating:<%= eveningW.weating %></p>
+    <p>Mood: <%= eveningW.wmood %></p>
+    <% } else {%>
+        <p>No data for evening found</p>
+    <% };%>
+
+    <h2>Monthly summary</h2>
+    <% if(morningM.passed) { %>
+    <h3>Morning</h3>
+    <p>Duration: <%= morningM.mduration %></p>
+    <p>Quality: <%= morningM.mquality %></p>
+    <p>Mood: <%= morningM.mmood %></p>
+    <% } else {%>
+        <p>No data for morning found</p>
+    <%}; %>
+
+    <% if(eveningM.passed) { %>
+    <h3>Evening</h3>
+    <p>Sports: <%= eveningM.msports %></p>
+    <p>Study: <%= eveningM.mstudy %></p>
+    <p>Eating:<%= eveningM.meating %></p>
+    <p>Mood: <%= eveningM.mmood %></p>
+    <% } else { %>
+        <p>No data for evening found</p>
+    <% }; %>
+    <h3>Mood averages</h3>
+    <% if(morningW.passed && eveningW.passed) { %>
+        <p>Average weekly mood: <%= moodW.moodW %></p>
+    <% } else { %>
+        <p>No data for mood found for this week</p>
+    <% }; %>
+
+    <% if(morningM.passed && eveningM.passed) { %>
+        <p>Average monthly mood: <%= moodM.moodM %></p>
+    <% } else { %>
+        <p>No data for mood found for this month</p>
+    <% }; %>
+<%- include("./partials/footer.ejs") %>
+
+<%/*CREATE TABLE morning (
+id SERIAL PRIMARY KEY,
+date Date,
+duration DECIMAL(2,1) NOT NULL,
+quality INTEGER NOT NULL,
+mood INTEGER NOT NULL,
+user_id INTEGER REFERENCES users(id)
+);*/ //Morning table
+/*CREATE TABLE evening (
+id SERIAL PRIMARY KEY,
+date DATE NOT NULL,
+sports DECIMAL(3,1) NOT NULL,
+study DECIMAL(3,1) NOT NULL,
+eating INTEGER NOT NULL,
+mood INTEGER NOT NULL,
+user_id INTEGER REFERENCES users(id)
+); */ %>

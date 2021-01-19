@@ -1,0 +1,25 @@
+<%- include("./partials/header.ejs") %>
+<%- include("./partials/email.ejs") %>
+<h1>Welcome to make your health better!</h1>
+<h2>
+    Here you can submit data about your sleeping duration and quality, exercise time,
+    eating/food quality, studying time and overall mood during a longer period of time. 
+    You can check your weekly and monthly averages in the summary section.
+    Using the buttons at the top of the page you can navigate to different sections like reporting,
+    summary and login. Remember to login, if you want to access the reporting or summary.
+     </h2>
+     <h3>Below you can see the average moods of yesterday and today averaged between all users.</h3>
+
+<% if(yesterday) { %>
+    <p>Yesterday's average mood: <%= yesterday %></p>
+<% } else { %>  
+    <p>Not data from yesterday found</p>
+<% }; %>  
+<% if(today) { %>
+    <p>Today's average mood: <%= today %></p>
+<% } else { %>
+    <p>No data from today found</p>
+<% }; %>
+
+ <h3><%= message %></h3>
+ <%- include("./partials/footer.ejs") %>
